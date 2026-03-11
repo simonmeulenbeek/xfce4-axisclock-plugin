@@ -37,18 +37,18 @@
 void
 axisclock_update_time(AxisClockPlugin *axisclock)
 {
-    gchar *time_string;
+    gchar *markup;
     
     g_return_if_fail(axisclock != NULL);
     
-    /* Get formatted time */
-    time_string = axisclock_get_formatted_time(axisclock->config);
+    /* Get formatted time markup */
+    markup = axisclock_get_formatted_time_markup(axisclock->config);
     
     /* Update label */
-    gtk_label_set_text(GTK_LABEL(axisclock->label), time_string);
+    gtk_label_set_markup(GTK_LABEL(axisclock->label), markup);
     
     /* Free the string */
-    g_free(time_string);
+    g_free(markup);
 }
 
 /* Timeout callback for updating time */

@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 #define AXISCLOCK_TIME_FORMAT "%a %b %-d %-l:%M%p"
 
 /* Function prototypes */
-gchar *axisclock_get_formatted_time(PluginConfig *config);
+gchar *axisclock_get_formatted_time_markup(PluginConfig *config);
 
 G_END_DECLS
 

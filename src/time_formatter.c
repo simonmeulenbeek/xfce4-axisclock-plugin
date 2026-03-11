@@ -33,9 +33,9 @@
 #include "time_formatter.h"
 #include "plugin_config.h"
 
-/* Get the current time formatted according to configuration */
+/* Get the current time formatted and wrapped in font-style according to configuration */
 gchar *
-axisclock_get_formatted_time(PluginConfig *config)
+axisclock_get_formatted_time_markup(PluginConfig *config)
 {
     time_t current_time;
     struct tm *time_info;
@@ -73,6 +73,15 @@ axisclock_get_formatted_time(PluginConfig *config)
             memmove(p - 1, p, strlen(p) + 1);
         }
     }
+
+    gchar *markup;
+    const gchar *font = (config && config->font_name) ? config->font_name : "Sans 10";
+
+    markup = g_strdup_printf("<span font_desc=\"%s\">%s</span>", 
+                             font, formatted_time);
+
+    /* Ruim de tijdelijke formatted_time op */
+    g_free(formatted_time);
     
-    return formatted_time;
+    return markup;
 }
