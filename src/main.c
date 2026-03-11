@@ -66,6 +66,7 @@ axisclock_construct(XfcePanelPlugin *plugin)
     GError* error = NULL;
     if (!xfconf_init(&error)) {
         g_critical("Error initialising XFConf: %s", error ? error->message : "Unknown error");
+        if (error) g_error_free(error);
     }
     AxisClockPlugin *axisclock;
     
