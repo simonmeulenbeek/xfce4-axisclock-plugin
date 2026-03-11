@@ -62,7 +62,11 @@ axisclock_show_about(XfcePanelPlugin *plugin G_GNUC_UNUSED)
 /* Plugin constructor */
 static void
 axisclock_construct(XfcePanelPlugin *plugin)
-{
+{   
+    GError* error = NULL;
+    if (!xfconf_init(&error)) {
+        g_critical("Error initialising XFConf: %s", error ? error->message : "Unknown error");
+    }
     AxisClockPlugin *axisclock;
     
     /* Create the plugin */

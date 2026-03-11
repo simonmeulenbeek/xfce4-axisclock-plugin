@@ -169,6 +169,9 @@ axisclock_destroy_plugin(AxisClockPlugin *axisclock)
         g_object_unref(axisclock->channel);
         axisclock->channel = NULL;
     }
+
+    /* Shut down XFConf library */
+    xfconf_shutdown();
     
     /* Free plugin structure */
     g_free(axisclock);
